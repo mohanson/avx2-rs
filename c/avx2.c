@@ -3,8 +3,6 @@
 #include <stdio.h>
 #include <time.h>
 
-// #define ARRAY_LENGTH 8
-
 void u64_mul_c(uint64_t size, const uint64_t *a, const uint64_t *b,
                uint64_t *c) {
   for (uint64_t i = 0; i < size; i++) {
@@ -26,7 +24,7 @@ void u64_mul_avx2(uint64_t size, const uint64_t *a, const uint64_t *b,
   }
 }
 
-#define SIZE 1024 * 32
+#define SIZE 1024 * 128
 #define LOOP 1024 * 32
 
 int main(int argc, char *argv[]) {
@@ -46,6 +44,13 @@ int main(int argc, char *argv[]) {
   clock_t toc = clock();
   printf("u64_mul_c    %f s\n", (double)(toc - tic) / CLOCKS_PER_SEC);
 
+  for (uint64_t i = 0; i < SIZE; i++) {
+    if (c[i] != a[i] * b[i]) {
+      printf("fail\n");
+      return 1;
+    }
+  }
+
   tic = clock();
   for (uint64_t i = 0; i < LOOP; i++) {
     u64_mul_avx2(SIZE, &a[0], &b[0], &c[0]);
@@ -59,7 +64,7 @@ int main(int argc, char *argv[]) {
       return 1;
     }
   }
-  printf("done\n");
 
+  printf("done\n");
   return 0;
 }
