@@ -11,15 +11,15 @@ fn test_u64_mul() {
         lhs[i] = random::<u32>() as u64;
         rhs[i] = random::<u32>() as u64;
     }
-    rs_avx2::u64_mul_rust(&lhs, &rhs, &mut ret);
+    avx2_rs::u64_mul_rust(&lhs, &rhs, &mut ret);
     for i in 0..SIZE {
         assert_eq!(ret[i], lhs[i] * rhs[i]);
     }
-    rs_avx2::u64_mul_auto_avx2(&lhs, &rhs, &mut ret);
+    avx2_rs::u64_mul_auto_avx2(&lhs, &rhs, &mut ret);
     for i in 0..SIZE {
         assert_eq!(ret[i], lhs[i] * rhs[i]);
     }
-    rs_avx2::u64_mul_hand_avx2(&lhs, &rhs, &mut ret);
+    avx2_rs::u64_mul_hand_avx2(&lhs, &rhs, &mut ret);
     for i in 0..SIZE {
         assert_eq!(ret[i], lhs[i] * rhs[i]);
     }

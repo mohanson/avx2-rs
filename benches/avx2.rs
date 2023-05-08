@@ -12,7 +12,7 @@ pub fn u64_mul_rust(c: &mut Criterion) {
         rhs[i] = random::<u32>() as u64;
     }
     c.bench_function("u64_mul_rust", |b| {
-        b.iter(|| black_box(rs_avx2::u64_mul_rust(&lhs, &rhs, &mut ret)))
+        b.iter(|| black_box(avx2_rs::u64_mul_rust(&lhs, &rhs, &mut ret)))
     });
 }
 
@@ -25,7 +25,7 @@ pub fn u64_mul_auto_avx2(c: &mut Criterion) {
         rhs[i] = random::<u32>() as u64;
     }
     c.bench_function("u64_mul_auto_avx2", |b| {
-        b.iter(|| black_box(rs_avx2::u64_mul_auto_avx2(&lhs, &rhs, &mut ret)))
+        b.iter(|| black_box(avx2_rs::u64_mul_auto_avx2(&lhs, &rhs, &mut ret)))
     });
 }
 
@@ -38,7 +38,7 @@ pub fn u64_mul_hand_avx2(c: &mut Criterion) {
         rhs[i] = random::<u32>() as u64;
     }
     c.bench_function("u64_mul_hand_avx2", |b| {
-        b.iter(|| black_box(rs_avx2::u64_mul_hand_avx2(&lhs, &rhs, &mut ret)))
+        b.iter(|| black_box(avx2_rs::u64_mul_hand_avx2(&lhs, &rhs, &mut ret)))
     });
 }
 

@@ -1,5 +1,5 @@
 [package]
-name = "rs-avx2"
+name = "avx2-rs"
 version = "0.1.0"
 edition = "2021"
 
